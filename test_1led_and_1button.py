@@ -3,7 +3,7 @@ import time
 
 GPIO.setmode(GPIO.BOARD)        
 
-GPIO.setup(3, GPIO.OUT)         
+
 
 GPIO.setup(5, GPIO.IN)       
 
