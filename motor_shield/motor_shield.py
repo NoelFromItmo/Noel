@@ -1,4 +1,4 @@
-#Primer raboty s motorshield L298 Author: Gilmitdinov Noel
+#Primer raboty s motorshield MC33932 Author: Gilmitdinov Noel
 
 #import bibliotek
 import RPi.GPIO as GPIO 
@@ -11,8 +11,12 @@ from pizypwm import *
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
+
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
+
+GPIO.setup(15, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
 
 
 #funkcia dlya raboty s 1 motorom
@@ -69,12 +73,17 @@ signal.signal(signal.SIGTERM, endProcess)
 signal.signal(signal.SIGINT, endProcess)
 
 try:
+	GPIO.output(15, True)
+	GPIO.output(22, True)
 	while True:
-		MotorA(10) #power ot -100 do 100 
-		MotorB(-20) #power ot -100 do 100 
+		MotorA(0) #power ot -100 do 100
+		time.sleep(0.1) 
+		MotorB(0) #power ot -100 do 100 
 		time.sleep(0.1)
 #Vihod po nazhatyu CTRL+C
 except  KeyboardInterrupt: 
+	GPIO.output(15, False)
+	GPIO.output(22, False)
 	endProcess()
 	GPIO.cleanup()
 	
