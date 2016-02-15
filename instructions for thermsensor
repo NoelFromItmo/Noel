@@ -1,0 +1,4 @@
+sudo modprobe w1-gpio && sudo modprobe w1_therm
+sudo nano /boot/config.txt
+добавить в конец строчку dtoverlay=w1-gpio
+ls -l /sys/bus/w1/devices/

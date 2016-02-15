@@ -1,4 +1,9 @@
 #Primer raboty s datchikom temperatury DS18B20 Author: Gilmitdinov Noel
+#sudo modprobe w1-gpio && sudo modprobe w1_therm
+#sudo nano /boot/config.txt
+#append string dtoverlay=w1-gpio
+#ls -l /sys/bus/w1/devices/
+#name folder = ID 
 from w1thermsensor import W1ThermSensor #podkluchenie biblioteki dlya obrabotki dannyh temperatury
 import time
 import RPi.GPIO as GPIO
