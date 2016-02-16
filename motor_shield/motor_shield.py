@@ -67,23 +67,22 @@ def endProcess(signalnum = None, handler = None):
 	p2.stop()
 	exit(0)
 	
+GPIO.output(15, True)
+GPIO.output(22, True)
 
-
-signal.signal(signal.SIGTERM, endProcess)
-signal.signal(signal.SIGINT, endProcess)
+#signal.signal(signal.SIGTERM, endProcess)
+#signal.signal(signal.SIGINT, endProcess)
 
 try:
-	GPIO.output(15, True)
-	GPIO.output(22, True)
+
 	while True:
-		MotorA(0) #power ot -100 do 100
-		time.sleep(0.1) 
-		MotorB(0) #power ot -100 do 100 
-		time.sleep(0.1)
+		MotorA(-100) #power ot -100 do 100
+ 
+		MotorB(100) #power ot -100 do 100 
+
 #Vihod po nazhatyu CTRL+C
 except  KeyboardInterrupt: 
 	GPIO.output(15, False)
 	GPIO.output(22, False)
 	endProcess()
 	GPIO.cleanup()
-	

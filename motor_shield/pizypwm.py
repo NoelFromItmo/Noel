@@ -17,7 +17,7 @@ class PiZyPwm(threading.Thread):
      self.gpioPin = gpioPin
      self.terminated = False
      self.toTerminate = False
-     GPIO.setmode(gpioScheme)
+     GPIO.setmode(GPIO.BOARD)
 
 
   def start(self, dutyCycle):
