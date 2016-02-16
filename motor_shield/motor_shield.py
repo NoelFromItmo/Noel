@@ -26,16 +26,19 @@ def MotorA(power1): #power ot -100 do 100
 	if power1 < 0:  
 		p1 = PiZyPwm(100, 16, GPIO.BOARD)
 		p1.start(math.fabs(power1))
+		time.sleep(0.1)
 		p1.changeDutyCycle(math.fabs(power1))
 
 	if power1 == 0:
 		p1 = PiZyPwm(100, 16, GPIO.BOARD)
 		p1.start(math.fabs(power1))
+		time.sleep(0.1)
 		p1.changeDutyCycle(math.fabs(power1))
 
 	if power1 > 0:
 		p1 = PiZyPwm(100, 18, GPIO.BOARD)
 		p1.start(math.fabs(power1))
+		time.sleep(0.1)
 		p1.changeDutyCycle(math.fabs(power1))
 
 	
@@ -47,16 +50,19 @@ def MotorB(power2): #power ot -100 do 100
 	if power2 < 0:
 		p2 = PiZyPwm(100, 13, GPIO.BOARD)
 		p2.start(math.fabs(power2))
+		time.sleep(0.1)
 		p2.changeDutyCycle(math.fabs(power2))
 
 	if power2 == 0:
 		p2 = PiZyPwm(100, 13, GPIO.BOARD)
 		p2.start(math.fabs(power2))
+		time.sleep(0.1)
 		p2.changeDutyCycle(math.fabs(power2))
 
 	if power2 > 0:
 		p2 = PiZyPwm(100, 11, GPIO.BOARD)
 		p2.start(math.fabs(power2))
+		time.sleep(0.1)
 		p2.changeDutyCycle(math.fabs(power2))
 
 
@@ -76,9 +82,10 @@ GPIO.output(22, True)
 try:
 
 	while True:
-		MotorA(-100) #power ot -100 do 100
+		
+		MotorA(50) #power ot -100 do 100
  
-		MotorB(100) #power ot -100 do 100 
+		MotorB(10) #power ot -100 do 100 
 
 #Vihod po nazhatyu CTRL+C
 except  KeyboardInterrupt: 
