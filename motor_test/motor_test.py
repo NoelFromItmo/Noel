@@ -74,7 +74,7 @@ try:
 		MotorB(-20) #power ot -100 do 100 
 		time.sleep(0.1)
 #Vihod po nazhatyu CTRL+C
-except  KeyboardInterrupt: 
+except  (KeyboardInterrupt, SystemExit): 
 	endProcess()
 	GPIO.cleanup()
 	
