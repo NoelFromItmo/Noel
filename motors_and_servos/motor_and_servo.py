@@ -29,15 +29,24 @@ GPIO.setup(5, GPIO.OUT)
 #funkcia dlya zapuska 1 motora
 def MotorAInit(power1): 
 	global p1
-	if power1 <= 0:  
+	if power1 < 0:  
 		p1 = PiZyPwm(100, 16, GPIO.BOARD)
 		p1.start(math.fabs(power1))
 
-#ispravit' nado
-	if power1 > 0:
+	if power1 >= 0:
 		p1 = PiZyPwm(100, 18, GPIO.BOARD)
 		p1.start(math.fabs(power1))
 
+
+def PlusMinus(a):
+	if a>0: 
+		return 1
+	else:
+		return 0
+
+		
+		
+	
 
 #funkcia dlya vrasheniya 1 motora
 #power zadaet skorost vrasheniya i napravlenie
@@ -51,12 +60,12 @@ def MotorAGo(power1): #power ot -100 do 100
 #funkcia dlya zapuska 2 motora
 def MotorBInit(power2): #power ot -100 do 100 
 	global p2
-	if power2 <= 0:
+	if power2 < 0:
 		p2 = PiZyPwm(100, 13, GPIO.BOARD)
 		p2.start(math.fabs(power2))
 
 
-	if power2 > 0:
+	if power2 >= 0:
 		p2 = PiZyPwm(100, 11, GPIO.BOARD)
 		p2.start(math.fabs(power2))
 
@@ -104,6 +113,8 @@ def endProcess(signalnum = None, handler = None):
 
 
 try:
+
+
 	value = 0
 	MotorAInit(value) #power ot -100 do 100
 	MotorBInit(value)
@@ -127,11 +138,20 @@ try:
 		value += 1
 		time.sleep(0.1)
 
+	old_value = PlusMinus(value)
 
-	while value>-100:
+	while value>-100:		
+
+		if PlusMinus(value) != old_value:
+			p1.stop()
+			p2.stop()
+			MotorAInit(value)
+			MotorBInit(value)
+			
 
 		#print value
 		
+
 		MotorAGo(value)
  
 		MotorBGo(value) 	
@@ -139,7 +159,8 @@ try:
 		ServoAGo(math.fabs(value*1.8)) 
 
 		ServoBGo(math.fabs(value*1.8))	
-		
+
+
 		value -= 1 
 		time.sleep(0.1)
 
@@ -147,7 +168,7 @@ try:
 
 		#print value
 		
-		MotorAGo(value) #
+		MotorAGo(value) 
  
 		MotorBGo(value) 
 
