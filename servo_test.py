@@ -1,13 +1,12 @@
 #Primer raboty s servoprivodom Author: Gilmitdinov Noel
 import time
 import RPi.GPIO as GPIO
-import wiringpi #podkluchenie biblioteki dlya SHIM
 #Vybor rezhima numeracii pinov
 GPIO.setmode(GPIO.BOARD)
 #Inicializaciya pinov
-GPIO.setup(11, GPIO.OUT)
+GPIO.setup(3, GPIO.OUT)
 #Zadaem kanal i chastotu 
-p = GPIO.PWM(11, 50)
+p = GPIO.PWM(3, 50)
 p.start(2.5)
 try:
 	duty = 0
