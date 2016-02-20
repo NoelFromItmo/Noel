@@ -10,6 +10,6 @@ GPIO.setup(5, GPIO.IN)
 
 while True:                     
 	#Zapis i vivod vhodnogo signala
-    sensor_data = GPIO.input(5);
+    sensor_data = GPIO.input(5)
     print "Line Sensor: ", sensor_data
     time.sleep(0.1)
