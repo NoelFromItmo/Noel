@@ -61,12 +61,12 @@ def MotorAGo(power1): #power ot -100 do 100
 def MotorBInit(power2): #power ot -100 do 100 
 	global p2
 	if power2 < 0:
-		p2 = PiZyPwm(100, 13, GPIO.BOARD)
+		p2 = PiZyPwm(100, 11, GPIO.BOARD)
 		p2.start(math.fabs(power2))
 
 
 	if power2 >= 0:
-		p2 = PiZyPwm(100, 11, GPIO.BOARD)
+		p2 = PiZyPwm(100, 13, GPIO.BOARD)
 		p2.start(math.fabs(power2))
 
 #funkcia dlya vrasheniya 2 motora
@@ -136,6 +136,7 @@ try:
 		ServoBGo(value*1.8)
 
 		value += 1
+
 		time.sleep(0.1)
 
 	old_value = PlusMinus(value)
@@ -149,7 +150,7 @@ try:
 			MotorBInit(value)
 			
 
-		#print value
+		print value
 		
 
 		MotorAGo(value)
@@ -163,6 +164,7 @@ try:
 
 		value -= 1 
 		time.sleep(0.1)
+
 
 	while value<=0:
 
