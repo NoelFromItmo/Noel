@@ -13,8 +13,9 @@ GPIO.setup(12, GPIO.IN) #OUT
 GPIO.setup(16, GPIO.OUT) #S0
 GPIO.setup(18, GPIO.OUT) #S1
 
-S1 = True
-S0 = False
+GPIO.output(16, True)
+GPIO.output(18, False)
+
 
 def PulseIn(pin, val):
 	beg_impulse = 0
@@ -26,7 +27,6 @@ def PulseIn(pin, val):
 	dur_impulse = end_impulse - beg_impulse
 	return dur_impulse
 		
-
 def ReadRed():
 	GPIO.output(8, False)
 	GPIO.output(10, False)
@@ -57,8 +57,8 @@ r0 = ReadRed() /1455971442*255
 g0 = ReadGreen()/1455971442*255
 b0 = ReadBlue() /1455971442*255
 while True:  
-	w = (ReadWhite()/1455971442*255 - w0) 
-	r = (ReadRed()/1455971442*255 - r0) 
+	w = (ReadWhite()/1455971442*255 - w0) * 1000000
+	r = (ReadRed()/1455971442*255 - r0)  * 1000000
 	g = (ReadGreen()/1455971442*255 - g0) * 1000000000000
 	b = (ReadBlue()/1455971442*255 - b0) * 1000000000000
 
@@ -74,4 +74,3 @@ while True:
 		print "green"
 	if (g > -50 ) and (g < -40 ) and (b > -50 ) and (b < -40 ):
 		print "blue"
-
