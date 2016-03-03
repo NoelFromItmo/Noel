@@ -137,6 +137,7 @@ try:
 
 		value += 1
 		time.sleep(0.1)
+		print value
 
 	old_value = PlusMinus(value)
 
@@ -149,7 +150,7 @@ try:
 			MotorBInit(value)
 			
 
-		#print value
+		print value
 		
 
 		MotorAGo(value)
